@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Pagination.module.scss';
 import { PaginationProps } from '.';
+import Button from '../Button/index';
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
@@ -46,46 +47,48 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className={styles.pagination}>
-      <button
-        className={`${styles.button} ${styles.first}`}
+      <Button
+        variant="transparent"
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
+        className={styles.firstArrow}
       >
         First
-      </button>
-      <button
-        className={`${styles.button} ${styles.prev}`}
+      </Button>
+      <Button
+        className={styles.prevArrow}
+        variant="transparent"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        Previous
-      </button>
+        Prev
+      </Button>
       {generatePageNumbers().map((page, index) => (
-        <button
+        <Button
           key={index}
-          className={`${styles.circleButton} ${
-            currentPage === page ? styles.active : ''
-          }`}
+          variant={'circle'}
           onClick={() => handlePageClick(page)}
           disabled={page === '...'}
         >
           {page}
-        </button>
+        </Button>
       ))}
-      <button
-        className={`${styles.button} ${styles.next}`}
+      <Button
+        className={styles.nextArrow}
+        variant="transparent"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         Next
-      </button>
-      <button
-        className={`${styles.button} ${styles.last}`}
+      </Button>
+      <Button
+        className={styles.lastArrow}
+        variant="transparent"
         onClick={() => onPageChange(totalPages)}
         disabled={currentPage === totalPages}
       >
         Last
-      </button>
+      </Button>
     </div>
   );
 };

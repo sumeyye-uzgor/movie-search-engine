@@ -8,6 +8,7 @@ const MovieList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('Pokemon');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [releaseYear, setReleaseYear] = useState<string>('');
 
   useEffect(() => {
     fetchMovies(searchTerm, page);
@@ -15,12 +16,16 @@ const MovieList: React.FC = () => {
 
   const fetchMovies = async (query: string, page: number) => {
     try {
+      const params: any = {
+        apikey: API_KEY,
+        s: query,
+        page: page,
+      };
+      if (releaseYear) {
+        params.y = releaseYear; // Add the year filter if provided
+      }
       const response = await defaultAxios.get('', {
-        params: {
-          apikey: API_KEY,
-          s: query,
-          page: page,
-        },
+        params,
       });
       if (response.data.Search) {
         setMovies(response.data.Search);
@@ -34,12 +39,21 @@ const MovieList: React.FC = () => {
 
   return (
     <div className={styles['table-container']}>
-      <input
-        type="text"
-        placeholder="Search movies"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className={styles['filter-container']}>
+        <input
+          type="text"
+          placeholder="Search movies"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Enter release year"
+          value={releaseYear}
+          onChange={(e) => setReleaseYear(e.target.value)}
+        />
+        <button onClick={() => fetchMovies(searchTerm, page)}>Filter</button>
+      </div>
       <table>
         <thead>
           <tr>
