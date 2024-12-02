@@ -1,0 +1,23 @@
+/* global.scss */
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Typography */
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* CSS Variables */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --font-size: 1rem;
+}
