@@ -2,58 +2,29 @@ import React, { useEffect, useState } from 'react';
 import defaultAxios, { API_KEY } from '../../utils/api';
 import styles from './MovieList.module.scss';
 import Pagination from '../Pagination/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { fetchMovies } from '../../slices/moviesSlice';
 
 const MovieList: React.FC = () => {
-  const [movies, setMovies] = useState<any[]>([]);
-  const [searchTerm, setSearchTerm] = useState('Pokemon');
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [releaseYear, setReleaseYear] = useState<string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { movies, totalPages, loading, error } = useSelector(
+    (state: RootState) => state.movies,
+  );
+  const { searchTerm, releaseYear } = useSelector(
+    (state: RootState) => state.search,
+  );
 
   useEffect(() => {
-    fetchMovies(searchTerm, page);
-  }, [searchTerm, page]);
+    dispatch(fetchMovies({ searchTerm, releaseYear, page: currentPage }));
+  }, [dispatch, searchTerm, releaseYear, currentPage]);
 
-  const fetchMovies = async (query: string, page: number) => {
-    try {
-      const params: any = {
-        apikey: API_KEY,
-        s: query,
-        page: page,
-      };
-      if (releaseYear) {
-        params.y = releaseYear; // Add the year filter if provided
-      }
-      const response = await defaultAxios.get('', {
-        params,
-      });
-      if (response.data.Search) {
-        setMovies(response.data.Search);
-        const totalResults = parseInt(response.data.totalResults, 10);
-        setTotalPages(Math.ceil(totalResults / 10));
-      }
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    }
-  };
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className={styles['table-container']}>
-      <div className={styles['filter-container']}>
-        <input
-          type="text"
-          placeholder="Search movies"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Enter release year"
-          value={releaseYear}
-          onChange={(e) => setReleaseYear(e.target.value)}
-        />
-        <button onClick={() => fetchMovies(searchTerm, page)}>Filter</button>
-      </div>
       <table>
         <thead>
           <tr>
@@ -73,9 +44,9 @@ const MovieList: React.FC = () => {
         </tbody>
       </table>
       <Pagination
-        currentPage={page}
+        currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={setPage}
+        onPageChange={setCurrentPage}
       />
     </div>
   );
