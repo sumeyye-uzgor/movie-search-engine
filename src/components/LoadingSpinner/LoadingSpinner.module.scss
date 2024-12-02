@@ -1,21 +1,23 @@
+@import '../styles/global.scss';
+
 .loadingContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
-  color: #555;
+  background-color: var(--background-color);
+  font-family: var(--font-family-primary);
+  color: var(--dark-gray);
 
   .spinner {
     width: 50px;
     height: 50px;
-    border: 5px solid #ddd;
-    border-top: 5px solid #007bff;
+    border: 5px solid var(--light-gray);
+    border-top: 5px solid var(--primary-color);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
+    animation: spin var(--animation-duration-regular) linear infinite;
+    margin-bottom: var(--spacing-small);
   }
 
   @keyframes spin {

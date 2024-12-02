@@ -1,93 +1,56 @@
+@import '../styles/global.scss';
+
 .table-container {
-  margin: 20px;
+  margin: var(--spacing-large);
 
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 15px;
+    margin-bottom: var(--spacing-regular);
 
     th,
     td {
-      border: 1px solid #ddd;
-      padding: 10px;
+      border: var(--border-width) solid var(--light-gray);
+      padding: var(--spacing-small);
       text-align: left;
     }
 
     th {
-      background-color: #f4f4f4;
+      background-color: var(--background-color);
     }
 
     tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: lighten(var(--background-color), 10%);
     }
 
     tr:hover {
-      background-color: #f1f1f1;
+      background-color: lighten(var(--background-color), 5%);
     }
   }
 
   .pagination-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: var(--spacing-small);
 
     button {
-      background-color: #007bff;
+      background-color: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 16px;
+      padding: var(--spacing-small) var(--spacing-regular);
+      border-radius: var(--border-radius);
+      font-size: var(--font-size-regular);
       cursor: pointer;
+      transition: background-color var(--animation-duration-fast) ease;
 
       &:disabled {
-        background-color: #cccccc;
+        background-color: var(--light-gray);
         cursor: not-allowed;
       }
 
       &:hover:not(:disabled) {
-        background-color: #0056b3;
+        background-color: darken(var(--primary-color), 10%);
       }
-    }
-  }
-}
-
-.filter-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-
-  input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-
-    -moz-appearance: textfield;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #0056b3;
     }
   }
 }

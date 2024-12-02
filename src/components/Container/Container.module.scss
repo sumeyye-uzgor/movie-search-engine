@@ -1,6 +1,8 @@
+@import '../styles/global.scss';
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 50px 32px;
+  padding: var(--spacing-extra-large) var(--spacing-large);
   box-sizing: border-box;
 }

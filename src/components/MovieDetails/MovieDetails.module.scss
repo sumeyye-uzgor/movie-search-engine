@@ -1,19 +1,21 @@
+@import '../styles/global.scss';
+
 .movieDetails {
   text-align: center;
-  margin-top: 20px;
+  margin-top: var(--spacing-large);
 
   h1 {
-    font-size: 2.5rem;
-    color: #007bff;
-    margin-bottom: 20px;
+    font-size: var(--font-size-title);
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-large);
   }
 
   .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: var(--spacing-large);
+    margin-bottom: var(--spacing-extra-large);
 
     @media (min-width: 768px) {
       flex-direction: row;
@@ -22,8 +24,8 @@
 
   .poster {
     max-width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--box-shadow-regular);
   }
 
   .info {
@@ -31,12 +33,12 @@
     text-align: left;
 
     p {
-      font-size: 1rem;
-      margin: 8px 0;
+      font-size: var(--font-size-regular);
+      margin: var(--spacing-small) 0;
 
       strong {
         font-weight: bold;
-        color: #333;
+        color: var(--text-color);
       }
     }
   }

@@ -1,16 +1,18 @@
+@import '../styles/global.scss';
+
 .title {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-regular);
   text-align: center;
 
   &.pageTitle {
-    font-size: 2.5rem;
+    font-size: var(--font-size-title);
     font-weight: bold;
-    color: #007bff;
+    color: var(--primary-color);
   }
 
   &.subTitle {
-    font-size: 1.5rem;
+    font-size: var(--font-size-subtitle);
     font-weight: normal;
-    color: #555;
+    color: var(--dark-gray);
   }
 }

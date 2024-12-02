@@ -1,23 +1,181 @@
 /* global.scss */
 
 /* CSS Reset */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Typography */
-body {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
 /* CSS Variables */
 :root {
+  /* Colors */
   --primary-color: #007bff;
   --secondary-color: #6c757d;
-  --font-size: 1rem;
+  --error-color: #e74c3c;
+  --background-color: #f4f4f4;
+  --text-color: #333;
+  --light-gray: #ddd;
+  --dark-gray: #555;
+
+  /* Font Families */
+  --font-family-primary: 'Arial', sans-serif;
+  --font-family-secondary: 'Georgia', serif;
+
+  /* Font Sizes */
+  --font-size-small: 0.875rem;
+  --font-size-regular: 1rem;
+  --font-size-large: 1.5rem;
+  --font-size-title: 2.5rem;
+  --font-size-subtitle: 1.25rem;
+
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-regular: 16px;
+  --spacing-large: 24px;
+  --spacing-extra-large: 32px;
+
+  /* Borders */
+  --border-radius: 5px;
+  --border-radius-large: 8px;
+  --border-width: 1px;
+
+  /* Shadows */
+  --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --box-shadow-regular: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* Animation */
+  --animation-duration-fast: 0.3s;
+  --animation-duration-regular: 0.5s;
+  --animation-duration-slow: 1s;
+
+  /* Z-Indexes */
+  --z-index-overlay: 1000;
+  --z-index-modal: 1050;
+  --z-index-tooltip: 1100;
+}
+
+/* Typography */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-regular);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-secondary);
+  margin-bottom: var(--spacing-regular);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--font-size-title);
+}
+
+h2 {
+  font-size: var(--font-size-large);
+}
+
+h3 {
+  font-size: var(--font-size-subtitle);
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--animation-duration-fast) ease;
+
+  &:hover {
+    color: darken(var(--primary-color), 10%);
+  }
+}
+
+/* Buttons */
+button {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-regular);
+  padding: var(--spacing-small) var(--spacing-regular);
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color var(--animation-duration-fast) ease,
+    box-shadow var(--animation-duration-fast) ease;
+
+  &:hover {
+    box-shadow: var(--box-shadow-regular);
+  }
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-regular);
+  padding: var(--spacing-small);
+  border: var(--border-width) solid var(--light-gray);
+  border-radius: var(--border-radius);
+  transition: border-color var(--animation-duration-fast) ease;
+
+  &:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+}
+
+/* Utility Spacing Classes */
+.mt-small {
+  margin-top: var(--spacing-small);
+}
+.mt-regular {
+  margin-top: var(--spacing-regular);
+}
+.mt-large {
+  margin-top: var(--spacing-large);
+}
+
+.mb-small {
+  margin-bottom: var(--spacing-small);
+}
+.mb-regular {
+  margin-bottom: var(--spacing-regular);
+}
+.mb-large {
+  margin-bottom: var(--spacing-large);
+}
+
+.pt-small {
+  padding-top: var(--spacing-small);
+}
+.pt-regular {
+  padding-top: var(--spacing-regular);
+}
+.pt-large {
+  padding-top: var(--spacing-large);
+}
+
+.pb-small {
+  padding-bottom: var(--spacing-small);
+}
+.pb-regular {
+  padding-bottom: var(--spacing-regular);
+}
+.pb-large {
+  padding-bottom: var(--spacing-large);
 }
