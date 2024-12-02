@@ -1,0 +1,75 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+
+  .button {
+    background: none;
+    color: #007bff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    &:hover:not(:disabled) {
+      color: #0056b3;
+      background-color: rgba(0, 123, 255, 0.1);
+    }
+
+    &:disabled {
+      color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    &.first::before {
+      content: '⏮';
+    }
+
+    &.prev::before {
+      content: '◀';
+    }
+
+    &.next::after {
+      content: '▶';
+    }
+
+    &.last::after {
+      content: '⏭';
+    }
+  }
+
+  .circleButton {
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.active {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 123, 255, 1);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    &:hover:not(.active) {
+      background-color: rgba(0, 123, 255, 0.3);
+    }
+  }
+}
