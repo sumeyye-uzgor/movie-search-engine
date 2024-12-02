@@ -29,7 +29,7 @@ export const fetchMovies = createAsyncThunk(
     page,
   }: {
     searchTerm: string;
-    releaseYear: string;
+    releaseYear?: string;
     page: number;
   }) => {
     const params: any = {
@@ -37,10 +37,7 @@ export const fetchMovies = createAsyncThunk(
       s: searchTerm || 'Pokemon',
       page,
     };
-    if (releaseYear) {
-      params.y = releaseYear;
-    }
-
+    if (releaseYear) params.y = releaseYear;
     const response = await defaultAxios.get('', { params });
     return {
       movies: response.data.Search,
