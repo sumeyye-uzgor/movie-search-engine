@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
 import DetailsPage from './pages/DetailsPage';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} fallbackElement={<div>Loading</div>} />
+      <RouterProvider router={router} fallbackElement={<LoadingSpinner />} />
     </Provider>
   </React.StrictMode>,
 );

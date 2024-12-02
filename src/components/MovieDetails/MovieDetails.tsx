@@ -6,6 +6,8 @@ import { fetchMovieDetails } from '../../slices/movieDetailsSlice';
 import Container from '../Container';
 import styles from './MovieDetails.module.scss';
 import Button from '../Button';
+import LoadingSpinner from '../LoadingSpinner';
+import Error from '../Error';
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams<Record<string, string>>();
@@ -25,11 +27,11 @@ const MovieDetails: React.FC = () => {
   }
 
   if (loading && !movieDetails[id]) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <Error message={error} />;
   }
 
   const movie = movieDetails[id];

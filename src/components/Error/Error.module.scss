@@ -1,0 +1,45 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff5f5;
+  font-family: Arial, sans-serif;
+  color: #e74c3c;
+  text-align: center;
+
+  .errorIcon {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #e74c3c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+
+    span {
+      color: #e74c3c;
+      font-size: 50px;
+    }
+  }
+
+  .errorText {
+    color: #c0392b;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}

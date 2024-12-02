@@ -5,6 +5,8 @@ import Pagination from '../Pagination/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { fetchMovies } from '../../slices/moviesSlice';
+import LoadingSpinner from '../LoadingSpinner';
+import Error from '../Error';
 
 const MovieList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,8 +22,13 @@ const MovieList: React.FC = () => {
     dispatch(fetchMovies({ searchTerm, releaseYear, page: currentPage }));
   }, [dispatch, searchTerm, releaseYear, currentPage]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <Error message={error} />;
+  }
 
   return (
     <div className={styles['table-container']}>
