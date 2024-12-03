@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { RootState, AppDispatch } from '../../store';
+
 import { fetchMovieDetails } from '../../slices/movieDetailsSlice';
+import { RootState, AppDispatch } from '../../store';
 import Container from '../Container';
 import styles from './MovieDetails.module.scss';
 import Button from '../Button';
-import LoadingSpinner from '../LoadingSpinner';
 import Error from '../Error';
+import LoadingSpinner from '../LoadingSpinner';
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams<Record<string, string>>();
@@ -67,9 +68,11 @@ const MovieDetails: React.FC = () => {
             </p>
           </div>
         </div>
-        <Link to="/" className={styles.backButton}>
-          Back to Movie List
-        </Link>
+        <Button>
+          <Link to="/" className={styles.backButton}>
+            Back to Movie List
+          </Link>
+        </Button>
       </div>
     </Container>
   );

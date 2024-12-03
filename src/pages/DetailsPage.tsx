@@ -1,7 +1,8 @@
 import React from 'react';
+
 import Container from '../components/Container';
-import Title from '../components/Title';
 import MovieDetails from '../components/MovieDetails';
+import Title from '../components/Title';
 
 const DetailsPage: React.FC = () => {
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './Error.module.scss';
+
 import { ErrorProps } from '.';
+import styles from './Error.module.scss';
 import Title from '../Title';
 
 const Error: React.FC<ErrorProps> = ({ message }) => {

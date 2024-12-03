@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import defaultAxios, { API_KEY } from '../../utils/api';
-import styles from './MovieList.module.scss';
-import Pagination from '../Pagination/index';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
+
+import styles from './MovieList.module.scss';
 import { fetchMovies } from '../../slices/moviesSlice';
-import LoadingSpinner from '../LoadingSpinner';
+import { AppDispatch, RootState } from '../../store';
 import Error from '../Error';
+import LoadingSpinner from '../LoadingSpinner';
+import Pagination from '../Pagination/index';
 
 const MovieList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -1,7 +1,8 @@
 import React from 'react';
+
+import Container from '../components/Container';
 import MovieList from '../components/MovieList/index';
 import SearchArea from '../components/SearchArea';
-import Container from '../components/Container';
 import Title from '../components/Title';
 
 const HomePage: React.FC = () => {

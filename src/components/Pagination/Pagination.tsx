@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import styles from './Pagination.module.scss';
+
 import { PaginationProps } from '.';
+import styles from './Pagination.module.scss';
 import Button from '../Button/index';
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -8,7 +9,7 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
-  const [visibleRange, setVisibleRange] = useState(5);
+  const [visibleRange] = useState(5);
 
   const generatePageNumbers = () => {
     const pages: (number | string)[] = [];

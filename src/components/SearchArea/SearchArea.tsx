@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
-import { setSearchTerm, setReleaseYear } from '../../slices/searchSlice';
+
 import { fetchMovies } from '../../slices/moviesSlice';
-import Input from '../Input';
+import { setSearchTerm, setReleaseYear } from '../../slices/searchSlice';
+import { RootState, AppDispatch } from '../../store';
 import Button from '../Button';
+import Input from '../Input';
 import styles from './SearchArea.module.scss';
 
-const SearchArea: React.FC = ({}) => {
+const SearchArea: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { searchTerm, releaseYear } = useSelector(
     (state: RootState) => state.search,

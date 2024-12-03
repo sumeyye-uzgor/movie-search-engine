@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import defaultAxios, { API_KEY } from '../utils/api';
 
 interface MovieDetails {
@@ -13,11 +14,13 @@ interface MovieDetails {
 }
 
 interface MovieDetailsState {
-  movieDetails: {
-    [id: string]: MovieDetails;
-  };
+  movieDetails: Record<string, MovieDetails>;
   loading: boolean;
   error: string | null;
+}
+
+interface RootState {
+  movieDetails: MovieDetailsState;
 }
 
 const initialState: MovieDetailsState = {
@@ -26,20 +29,26 @@ const initialState: MovieDetailsState = {
   error: null,
 };
 
-export const fetchMovieDetails = createAsyncThunk(
-  'movieDetails/fetchMovieDetails',
-  async (id: string, { getState }: any) => {
-    const { movieDetails }: MovieDetailsState = getState().movieDetails;
-    if (movieDetails[id]) return { id, data: movieDetails[id] };
-    const response = await defaultAxios.get('', {
-      params: { apikey: API_KEY, i: id },
-    });
-    return {
-      id,
-      data: response.data,
-    };
-  },
-);
+export const fetchMovieDetails = createAsyncThunk<
+  { id: string; data: MovieDetails },
+  string,
+  { state: RootState }
+>('movieDetails/fetchMovieDetails', async (id, { getState }) => {
+  const { movieDetails } = getState().movieDetails;
+
+  if (movieDetails[id]) {
+    return { id, data: movieDetails[id] };
+  }
+
+  const response = await defaultAxios.get('', {
+    params: { apikey: API_KEY, i: id },
+  });
+
+  return {
+    id,
+    data: response.data as MovieDetails,
+  };
+});
 
 const movieDetailsSlice = createSlice({
   name: 'movieDetails',

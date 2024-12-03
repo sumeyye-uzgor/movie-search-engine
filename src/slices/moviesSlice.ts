@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import defaultAxios, { API_KEY } from '../utils/api';
 
 interface Movie {
@@ -21,30 +22,26 @@ const initialState: MoviesState = {
   error: null,
 };
 
-export const fetchMovies = createAsyncThunk(
-  'movies/fetchMovies',
-  async ({
-    searchTerm,
-    releaseYear,
+export const fetchMovies = createAsyncThunk<
+  { movies: Movie[]; totalResults: number },
+  { searchTerm: string; releaseYear?: string; page: number }
+>('movies/fetchMovies', async ({ searchTerm, releaseYear, page }) => {
+  const params: Record<string, string | number> = {
+    apikey: `${API_KEY}`,
+    s: searchTerm || 'Pokemon',
     page,
-  }: {
-    searchTerm: string;
-    releaseYear?: string;
-    page: number;
-  }) => {
-    const params: any = {
-      apikey: API_KEY,
-      s: searchTerm || 'Pokemon',
-      page,
-    };
-    if (releaseYear) params.y = releaseYear;
-    const response = await defaultAxios.get('', { params });
-    return {
-      movies: response.data.Search,
-      totalResults: parseInt(response.data.totalResults, 10),
-    };
-  },
-);
+  };
+
+  if (releaseYear) {
+    params.y = releaseYear;
+  }
+
+  const response = await defaultAxios.get('', { params });
+  return {
+    movies: response.data.Search as Movie[],
+    totalResults: parseInt(response.data.totalResults, 10),
+  };
+});
 
 const moviesSlice = createSlice({
   name: 'movies',

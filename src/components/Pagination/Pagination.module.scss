@@ -1,3 +1,5 @@
+@import '../../global.scss';
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -13,11 +15,11 @@
       content: '◀';
       position: absolute;
       left: 0;
-      color: #007bff;
+      color: var(--primary-color);
     }
 
     &:hover::before {
-      color: #0056b3;
+      color: var(--hover-color);
     }
   }
 
@@ -29,11 +31,11 @@
       content: '▶';
       position: absolute;
       right: 0;
-      color: #007bff;
+      color: var(--primary-color);
     }
 
     &:hover::after {
-      color: #0056b3;
+      color: var(--hover-color);
     }
   }
 
@@ -45,11 +47,11 @@
       content: '⏮';
       position: absolute;
       left: 0;
-      color: #007bff;
+      color: var(--primary-color);
     }
 
     &:hover::before {
-      color: #0056b3;
+      color: var(--hover-color);
     }
   }
 
@@ -61,11 +63,11 @@
       content: '⏭';
       position: absolute;
       right: 0;
-      color: #007bff;
+      color: var(--primary-color);
     }
 
     &:hover::after {
-      color: #0056b3;
+      color: var(--hover-color);
     }
   }
 }

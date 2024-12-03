@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './global.scss';
-import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './store';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import HomePage from './pages/HomePage';
-import DetailsPage from './pages/DetailsPage';
 import LoadingSpinner from './components/LoadingSpinner';
+import DetailsPage from './pages/DetailsPage';
+import HomePage from './pages/HomePage';
+import reportWebVitals from './reportWebVitals';
+import store from './store';
 
 const router = createBrowserRouter([
   {
