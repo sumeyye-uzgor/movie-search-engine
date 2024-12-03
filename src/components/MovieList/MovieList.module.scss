@@ -20,11 +20,11 @@
     }
 
     tr:nth-child(even) {
-      background-color: lighten(var(--background-color), 10%);
+      background-color: var(--white);
     }
 
     tr:hover {
-      background-color: lighten(var(--background-color), 5%);
+      background-color: var(--background-color-light);
     }
   }
 
@@ -49,7 +49,7 @@
       }
 
       &:hover:not(:disabled) {
-        background-color: darken(var(--primary-color), 10%);
+        background-color: var(--primary-color-dark);
       }
     }
   }

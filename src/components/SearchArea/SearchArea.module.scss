@@ -32,7 +32,7 @@
     transition: background-color var(--animation-duration-fast) ease;
 
     &:hover {
-      background-color: darken(var(--primary-color), 10%);
+      background-color: var(--primary-color-dark);
     }
   }
 }

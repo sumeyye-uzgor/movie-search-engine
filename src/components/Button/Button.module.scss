@@ -20,7 +20,7 @@
     border-radius: var(--border-radius);
 
     &:hover:not(:disabled) {
-      background-color: darken(var(--primary-color), 10%);
+      background-color: var(--primary-color-dark);
     }
   }
 
@@ -28,7 +28,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(var(--primary-color), 0.8);
+    background-color: var(--primary-color-light);
     color: white;
 
     &:hover:not(:disabled) {
@@ -43,7 +43,7 @@
     padding: var(--spacing-small) var(--spacing-regular);
 
     &:hover:not(:disabled) {
-      color: darken(var(--primary-color), 10%);
+      color: var(--primary-color-dark);
     }
   }
 
