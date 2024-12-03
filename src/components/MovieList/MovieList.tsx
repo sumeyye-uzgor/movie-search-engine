@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './MovieList.module.scss';
 import { fetchMovies } from '../../slices/moviesSlice';
@@ -10,6 +11,7 @@ import Pagination from '../Pagination/index';
 
 const MovieList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const { movies, totalPages, loading, error } = useSelector(
     (state: RootState) => state.movies,
@@ -30,6 +32,10 @@ const MovieList: React.FC = () => {
     return <Error message={error} />;
   }
 
+  const handleRowClick = (imdbID: string) => {
+    navigate(`/details/${imdbID}`);
+  };
+
   return (
     <div className={styles['table-container']}>
       <table>
@@ -42,7 +48,11 @@ const MovieList: React.FC = () => {
         </thead>
         <tbody>
           {movies.map((movie) => (
-            <tr key={movie.imdbID}>
+            <tr
+              key={movie.imdbID}
+              onClick={() => handleRowClick(movie.imdbID)}
+              className={styles['clickable-row']}
+            >
               <td>{movie.Title}</td>
               <td>{movie.Year}</td>
               <td>{movie.imdbID}</td>

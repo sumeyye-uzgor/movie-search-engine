@@ -4,10 +4,10 @@
   text-align: center;
   margin-top: var(--spacing-large);
 
-  h1 {
-    font-size: var(--font-size-title);
+  h4 {
+    font-size: var(--font-size-subtitle);
     color: var(--primary-color);
-    margin-bottom: var(--spacing-large);
+    margin-bottom: var(--spacing-extra-large);
   }
 
   .content {
@@ -39,6 +39,9 @@
       strong {
         font-weight: bold;
         color: var(--text-color);
+      }
+      &:last-of-type {
+        margin-bottom: var(--spacing-extra-large);
       }
     }
   }

@@ -44,6 +44,7 @@ export const fetchMovieDetails = createAsyncThunk<
     params: { apikey: API_KEY, i: id },
   });
 
+  console.log(response, 'response here');
   return {
     id,
     data: response.data as MovieDetails,

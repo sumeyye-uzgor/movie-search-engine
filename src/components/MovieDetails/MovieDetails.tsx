@@ -37,10 +37,14 @@ const MovieDetails: React.FC = () => {
 
   const movie = movieDetails[id];
 
+  if (!movie) {
+    return (
+      <Error message="Movie details could not be found. Please try again later." />
+    );
+  }
   return (
     <Container>
       <div className={styles.movieDetails}>
-        <h1>{movie?.Title}</h1>
         <div className={styles.content}>
           <img
             src={movie?.Poster}
@@ -48,6 +52,8 @@ const MovieDetails: React.FC = () => {
             className={styles.poster}
           />
           <div className={styles.info}>
+            <h4>{movie?.Title}</h4>
+
             <p>
               <strong>Year:</strong> {movie?.Year}
             </p>
@@ -66,13 +72,11 @@ const MovieDetails: React.FC = () => {
             <p>
               <strong>IMDb Rating:</strong> {movie?.imdbRating}
             </p>
+            <Link to="/">
+              <Button>Back to Movie List</Button>
+            </Link>
           </div>
         </div>
-        <Button>
-          <Link to="/" className={styles.backButton}>
-            Back to Movie List
-          </Link>
-        </Button>
       </div>
     </Container>
   );

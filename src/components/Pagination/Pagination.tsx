@@ -68,6 +68,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <Button
           key={index}
           variant={'circle'}
+          className={page === currentPage ? styles.activeButton : ''}
           onClick={() => handlePageClick(page)}
           disabled={page === '...'}
         >

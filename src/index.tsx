@@ -26,7 +26,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} fallbackElement={<LoadingSpinner />} />
+      <RouterProvider
+        router={router}
+        fallbackElement={<LoadingSpinner />}
+        future={{ v7_startTransition: true }}
+      />
     </Provider>
   </React.StrictMode>,
 );
