@@ -3,8 +3,13 @@ import React from 'react';
 import { ErrorProps } from '.';
 import styles from './Error.module.scss';
 import Title from '../Title';
+import LinkButton from '../LinkButton';
 
-const Error: React.FC<ErrorProps> = ({ message }) => {
+const Error: React.FC<ErrorProps> = ({
+  message,
+  buttonText,
+  buttonLink = '/',
+}) => {
   return (
     <div className={styles.errorContainer}>
       <div className={styles.errorIcon}>
@@ -12,9 +17,12 @@ const Error: React.FC<ErrorProps> = ({ message }) => {
       </div>
       <Title
         text="An error occurred. Please try again later."
-        className={styles.errorMessage}
+        className={styles.errorText}
       />
-      {message && <Title variant="subTitle" text={message} />}
+      {message && (
+        <Title variant="subTitle" text={message} className={styles.errorText} />
+      )}
+      {buttonText && <LinkButton to={buttonLink}>{buttonText}</LinkButton>}
     </div>
   );
 };

@@ -9,6 +9,7 @@ import DetailsPage from './pages/DetailsPage';
 import HomePage from './pages/HomePage';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
+import NotFoundPage from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     path: '/details/:id',
     element: <DetailsPage />,
   },
+  { path: '*', element: <NotFoundPage /> },
 ]);
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

@@ -9,6 +9,7 @@ import styles from './MovieDetails.module.scss';
 import Button from '../Button';
 import Error from '../Error';
 import LoadingSpinner from '../LoadingSpinner';
+import LinkButton from '../LinkButton';
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams<Record<string, string>>();
@@ -16,7 +17,6 @@ const MovieDetails: React.FC = () => {
   const { movieDetails, loading, error } = useSelector(
     (state: RootState) => state.movieDetails,
   );
-
   useEffect(() => {
     if (id && !movieDetails[id]) {
       dispatch(fetchMovieDetails(id));
@@ -24,7 +24,11 @@ const MovieDetails: React.FC = () => {
   }, [dispatch, id, movieDetails]);
 
   if (!id) {
-    return <p>Invalid movie ID</p>;
+    return (
+      <Container>
+        <Error message="Invalid movie ID" />
+      </Container>
+    );
   }
 
   if (loading && !movieDetails[id]) {
@@ -32,16 +36,24 @@ const MovieDetails: React.FC = () => {
   }
 
   if (error) {
-    return <Error message={error} />;
+    return (
+      <Container>
+        <Error message={error} buttonText="Back to Movie List" />
+      </Container>
+    );
   }
 
   const movie = movieDetails[id];
 
-  if (!movie) {
+  if (!movie || Object.keys(movie).length === 0) {
     return (
-      <Error message="Movie details could not be found. Please try again later." />
+      <Container>
+        <Error message="Movie not found!" />
+        <LinkButton to="/">Back to Movies List</LinkButton>
+      </Container>
     );
   }
+
   return (
     <Container>
       <div className={styles.movieDetails}>
@@ -72,9 +84,7 @@ const MovieDetails: React.FC = () => {
             <p>
               <strong>IMDb Rating:</strong> {movie?.imdbRating}
             </p>
-            <Link to="/">
-              <Button>Back to Movie List</Button>
-            </Link>
+            <LinkButton to="/">Back to Movies List</LinkButton>
           </div>
         </div>
       </div>

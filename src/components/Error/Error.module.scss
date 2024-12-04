@@ -5,8 +5,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: var(--error-color-light);
   font-family: var(--font-family-primary);
   color: var(--error-color);
   text-align: center;
@@ -30,9 +28,7 @@
   }
 
   .errorText {
-    color: var(--primary-color-dark);
-    font-size: var(--font-size-regular);
-    margin-top: var(--spacing-regular);
+    color: var(--error-color) !important;
   }
 
   @keyframes pulse {

@@ -3,6 +3,12 @@
 .table-container {
   margin: var(--spacing-large);
 
+  .no-movies {
+    text-align: center;
+    font-size: var(--font-size-large);
+    color: var(--primary-color);
+    margin-top: var(--spacing-large);
+  }
   table {
     width: 100%;
     border-collapse: collapse;

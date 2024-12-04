@@ -21,8 +21,14 @@ const MovieList: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchMovies({ searchTerm, releaseYear, page: currentPage }));
-  }, [dispatch, searchTerm, releaseYear, currentPage]);
+    dispatch(
+      fetchMovies({
+        searchTerm,
+        releaseYear,
+        page: currentPage,
+      }),
+    );
+  }, [dispatch, currentPage]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -38,33 +44,40 @@ const MovieList: React.FC = () => {
 
   return (
     <div className={styles['table-container']}>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Release Date</th>
-            <th>IMDb ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {movies.map((movie) => (
-            <tr
-              key={movie.imdbID}
-              onClick={() => handleRowClick(movie.imdbID)}
-              className={styles['clickable-row']}
-            >
-              <td>{movie.Title}</td>
-              <td>{movie.Year}</td>
-              <td>{movie.imdbID}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
+      {!movies || movies.length === 0 ? (
+        <p className={styles['no-movies']}>No movies found.</p>
+      ) : (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Release Date</th>
+                <th>IMDb ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {movies &&
+                movies.map((movie) => (
+                  <tr
+                    key={movie.imdbID}
+                    onClick={() => handleRowClick(movie.imdbID)}
+                    className={styles['clickable-row']}
+                  >
+                    <td>{movie.Title}</td>
+                    <td>{movie.Year}</td>
+                    <td>{movie.imdbID}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </>
+      )}
     </div>
   );
 };

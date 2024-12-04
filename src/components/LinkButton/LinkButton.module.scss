@@ -1,0 +1,29 @@
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: var(--spacing-small) var(--spacing-regular);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-regular);
+  transition: background-color var(--animation-duration-fast) ease;
+
+  &.default {
+    background-color: var(--primary-color);
+    color: white;
+
+    &:hover {
+      background-color: var(--primary-color-dark);
+    }
+  }
+
+  &.text {
+    background-color: transparent;
+    color: var(--primary-color);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--primary-color-dark);
+    }
+  }
+}

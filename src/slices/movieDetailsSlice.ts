@@ -33,23 +33,38 @@ export const fetchMovieDetails = createAsyncThunk<
   { id: string; data: MovieDetails },
   string,
   { state: RootState }
->('movieDetails/fetchMovieDetails', async (id, { getState }) => {
-  const { movieDetails } = getState().movieDetails;
+>(
+  'movieDetails/fetchMovieDetails',
+  async (id, { getState, rejectWithValue }) => {
+    const { movieDetails } = getState().movieDetails;
 
-  if (movieDetails[id]) {
-    return { id, data: movieDetails[id] };
-  }
+    if (movieDetails[id]) {
+      return { id, data: movieDetails[id] };
+    }
 
-  const response = await defaultAxios.get('', {
-    params: { apikey: API_KEY, i: id },
-  });
+    try {
+      const response = await defaultAxios.get('', {
+        params: { apikey: API_KEY, i: id },
+      });
 
-  console.log(response, 'response here');
-  return {
-    id,
-    data: response.data as MovieDetails,
-  };
-});
+      if (response.data.Response === 'False') {
+        return rejectWithValue(
+          response.data.Error || 'Failed to fetch movie details',
+        );
+      }
+
+      return {
+        id,
+        data: response.data,
+      };
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('An unknown error occurred.');
+    }
+  },
+);
 
 const movieDetailsSlice = createSlice({
   name: 'movieDetails',
@@ -67,7 +82,8 @@ const movieDetailsSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchMovieDetails.rejected, (state, action) => {
-        state.error = action.error.message || 'Failed to fetch movie details';
+        state.error =
+          (action.payload as string) || 'Failed to fetch movie details.';
         state.loading = false;
       });
   },

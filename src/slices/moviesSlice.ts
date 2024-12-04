@@ -24,7 +24,7 @@ const initialState: MoviesState = {
 
 export const fetchMovies = createAsyncThunk<
   { movies: Movie[]; totalResults: number },
-  { searchTerm: string; releaseYear?: string; page: number }
+  { searchTerm?: string; releaseYear?: string; page: number }
 >('movies/fetchMovies', async ({ searchTerm, releaseYear, page }) => {
   const params: Record<string, string | number> = {
     apikey: `${API_KEY}`,
