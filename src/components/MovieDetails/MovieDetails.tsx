@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../../slices/movieDetailsSlice';
 import { RootState, AppDispatch } from '../../store';
 import Container from '../Container';
 import styles from './MovieDetails.module.scss';
-import Button from '../Button';
 import Error from '../Error';
 import LoadingSpinner from '../LoadingSpinner';
 import LinkButton from '../LinkButton';

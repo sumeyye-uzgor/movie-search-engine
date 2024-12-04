@@ -6,6 +6,9 @@
   align-items: center;
   gap: 12px;
   margin-top: 20px;
+  @media (max-width: 680px) {
+    gap: var(--spacing-small);
+  }
 
   .prevArrow {
     position: relative;
@@ -26,6 +29,10 @@
     width: 50px !important;
     height: 50px !important;
     background-color: var(--primary-color) !important;
+    @media (max-width: 680px) {
+      width: 40px !important;
+      height: 40px !important;
+    }
   }
 
   .nextArrow {

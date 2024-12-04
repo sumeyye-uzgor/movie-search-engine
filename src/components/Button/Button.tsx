@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { ButtonProps } from '.';
 import styles from './Button.module.scss';
-import { Link } from 'react-router-dom';
 
 const Button: React.FC<ButtonProps> = ({
   children,

@@ -28,7 +28,7 @@ const MovieList: React.FC = () => {
         page: currentPage,
       }),
     );
-  }, [dispatch, currentPage]);
+  }, [dispatch, currentPage, releaseYear, searchTerm]);
 
   if (loading) {
     return <LoadingSpinner />;

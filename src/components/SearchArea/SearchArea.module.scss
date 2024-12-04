@@ -2,14 +2,21 @@
 
 .searchArea {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: center;
-  gap: var(--spacing-regular);
+  gap: var(--spacing-small);
   margin-bottom: var(--spacing-large);
 
   .error {
     color: var(--error-color);
     font-size: 0.9rem;
     margin-top: 4px;
+  }
+
+  @media (min-width: 680px) {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-regular);
   }
 }

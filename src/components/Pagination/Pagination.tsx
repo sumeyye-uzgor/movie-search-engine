@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { PaginationProps } from '.';
 import styles from './Pagination.module.scss';
@@ -45,17 +45,31 @@ const Pagination: React.FC<PaginationProps> = ({
       onPageChange(page);
     }
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 680);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 680);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div className={styles.pagination}>
-      <Button
-        variant="transparent"
-        onClick={() => onPageChange(1)}
-        disabled={currentPage === 1}
-        className={styles.firstArrow}
-      >
-        First
-      </Button>
+      {!isMobile && (
+        <Button
+          variant="transparent"
+          onClick={() => onPageChange(1)}
+          disabled={currentPage === 1}
+          className={styles.firstArrow}
+        >
+          First
+        </Button>
+      )}
       <Button
         className={styles.prevArrow}
         variant="transparent"
@@ -83,14 +97,16 @@ const Pagination: React.FC<PaginationProps> = ({
       >
         Next
       </Button>
-      <Button
-        className={styles.lastArrow}
-        variant="transparent"
-        onClick={() => onPageChange(totalPages)}
-        disabled={currentPage === totalPages}
-      >
-        Last
-      </Button>
+      {!isMobile && (
+        <Button
+          className={styles.lastArrow}
+          variant="transparent"
+          onClick={() => onPageChange(totalPages)}
+          disabled={currentPage === totalPages}
+        >
+          Last
+        </Button>
+      )}
     </div>
   );
 };

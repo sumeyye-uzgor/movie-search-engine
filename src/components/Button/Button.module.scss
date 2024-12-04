@@ -30,7 +30,10 @@
     border-radius: 50%;
     background-color: var(--primary-color-light);
     color: white;
-
+    @media (max-width: 680px) {
+      width: 30px !important;
+      height: 30px !important;
+    }
     &:hover:not(:disabled) {
       background-color: var(--primary-color);
     }
