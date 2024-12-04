@@ -70,16 +70,22 @@ yarn start
 ## Screenshots
 
 1. Homepage
-
-The home page contains a search area and a paginated table for listing movies.
+   The home page contains a search area and a paginated table for listing movies.
+   ![Home Page - Pokemon Page 2 ](assets/Screenshot1.png)
+   ![Home Page - Pokemon Page 43](assets/Screenshot2.png)
+   ![Home Page - Harry Potter Year Filtered](assets/Screenshot3.png)
+   ![Home Page - Harry Potter](assets/Screenshot4.png)
 
 2. Details Page
 
 The details page shows comprehensive information about the selected movie.
+![Details Page](assets/Screenshot5.png)
+![Details Page - Not Found Movie](assets/Screenshot6.png)
 
 3. Error Pages
 
 Custom error messages for 404 and invalid searches.
+![Error Page](assets/Screenshot7.png)
 
 ## API Usage
 
