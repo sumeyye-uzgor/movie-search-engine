@@ -1,46 +1,120 @@
-# Getting Started with Create React App
+# Movie Search Engine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A single-page application (SPA) for searching and viewing detailed information about movies. Built with React and Redux, it fetches data from the [OMDb API](http://www.omdbapi.com/) and provides a seamless user experience with pagination, filtering, and detailed movie views.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+Follow these steps to download, install, and run the project on your local machine.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Make sure you have the following installed:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) (v16+ is recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone this repository:
 
-### `npm run build`
+```bash
+git clone https://github.com/your-username/movie-search-engine.git
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+cd movie-search-engine
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install dependencies:
 
-### `npm run eject`
+```bash
+npm install
+# or
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Starting the Development Server
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Start the app:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm start
+# or
+yarn start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Search Movies: Search for movies by name using the [OMDb API](http://www.omdbapi.com/).
+- Filter by Year: Narrow down results by specifying a release year.
+- Pagination: Displays movies in a paginated table for easy navigation.
+- Movie Details Page: Click on a movie to view detailed information, including its poster, genre, director, cast, and plot.
+- Error Handling: Handles cases like invalid searches or missing movie details gracefully with custom error pages.
+- Responsive Design: Optimized for various screen sizes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Libraries and Tools Used
+
+| Library/Tool      | Purpose                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| **React**         | Framework for building the user interface.                         |
+| **Redux Toolkit** | Manages the global state of the app.                               |
+| **React Router**  | Handles routing between the main pages and the details page.       |
+| **Sass (SCSS)**   | Provides styles and theming for the app with variables and mixins. |
+| **Yup**           | Validates form input (search terms and filters).                   |
+| **axios**         | Makes HTTP requests to the [OMDb API](http://www.omdbapi.com/).    |
+
+## Screenshots
+
+1. Homepage
+
+The home page contains a search area and a paginated table for listing movies.
+
+2. Details Page
+
+The details page shows comprehensive information about the selected movie.
+
+3. Error Pages
+
+Custom error messages for 404 and invalid searches.
+
+## API Usage
+
+This app uses the [OMDb API](http://www.omdbapi.com/). To run the app locally, you must provide an API key in your .env file:
+
+```bash
+REACT_APP_API_KEY=your_api_key
+```
+
+## Folder Structure
+
+```bash
+movie-search-engine/
+├── public/
+├── src/
+│ ├── components/ # Reusable components (Button, Input, etc.)
+│ ├── pages/ # Main pages (HomePage, DetailsPage, ErrorPage)
+│ ├── slices/ # Redux slices for state management
+│ ├── utils/ # Utility functions and API configuration
+│ ├── App.tsx # Main application component
+│ └── index.tsx # Entry point of the application
+│ └── global.scss # Theme variables definition
+├── .env # Environment variables
+├── package.json # Dependencies and scripts
+└── README.md # Project documentation
+```
+
+### Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License.
+
+### Contact
+
+For questions or suggestions, please contact [sumeyyeuzgor@gmail.com].
